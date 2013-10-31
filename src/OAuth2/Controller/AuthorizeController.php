@@ -324,4 +324,10 @@ class AuthorizeController implements AuthorizeControllerInterface
     {
         return $this->response_type;
     }
+
+    //Added to get client_name out of DB for display purposes
+    public function getClientName()
+    {
+        return $this->clientStorage->getClientName();
+    }
 }

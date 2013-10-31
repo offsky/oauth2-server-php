@@ -187,7 +187,8 @@ class Server implements ResourceControllerInterface,
     public function handleTokenRequest(RequestInterface $request, ResponseInterface $response = null)
     {
         $this->response = is_null($response) ? new Response() : $response;
-        $this->getTokenController()->handleTokenRequest($request, $this->response);
+        $success = $this->getTokenController()->handleTokenRequest($request, $this->response);
+        if(!$success) return null; //if we have failed to handle the token request, return null
         return $this->response;
     }
 

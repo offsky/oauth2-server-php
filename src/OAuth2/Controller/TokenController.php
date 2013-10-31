@@ -49,7 +49,10 @@ class TokenController implements TokenControllerInterface
             $response->setStatusCode(200);
             $response->addParameters($token);
             $response->addHttpHeaders(array('Cache-Control' => 'no-store', 'Pragma' => 'no-cache'));
+        } else {
+            return false; //we failed to save the token
         }
+        return true;
     }
 
     /**

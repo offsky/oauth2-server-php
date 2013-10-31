@@ -73,8 +73,9 @@ class AccessToken implements AccessTokenInterface
             "scope" => $scope
         );
 
-        $this->tokenStorage->setAccessToken($token["access_token"], $client_id, $user_id, $this->config['access_lifetime'] ? time() + $this->config['access_lifetime'] : null, $scope);
-
+        $success = $this->tokenStorage->setAccessToken($token["access_token"], $client_id, $user_id, $this->config['access_lifetime'] ? time() + $this->config['access_lifetime'] : null, $scope);
+		if(!$success) return null; //if we have failed to set the token, return early
+		
         /*
          * Issue a refresh token also, if we support them
          *

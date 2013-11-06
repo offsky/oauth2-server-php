@@ -170,4 +170,9 @@ class TokenController implements TokenControllerInterface
 
         $this->grantTypes[$identifier] = $grantType;
     }
+
+    //Jake added to get userid and other data from access token
+    public function getTokenData() {
+        return $this->accessToken->getTokenData();
+    }
 }

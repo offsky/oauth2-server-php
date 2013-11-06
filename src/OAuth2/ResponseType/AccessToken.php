@@ -128,4 +128,10 @@ class AccessToken implements AccessTokenInterface
     {
         return $this->generateAccessToken(); // let's reuse the same scheme for token generation
     }
+
+    //Jake added to get userid and other data from access token
+    public function getTokenData() 
+    {
+        return $this->tokenStorage->getTokenData();
+    }
 }

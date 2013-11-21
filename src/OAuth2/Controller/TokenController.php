@@ -151,7 +151,12 @@ class TokenController implements TokenControllerInterface
             return null;
         }
 
-        return $grantType->createAccessToken($this->accessToken, $clientId, $grantType->getUserId(), $requestedScope);
+        $token = $grantType->createAccessToken($this->accessToken, $clientId, $grantType->getUserId(), $requestedScope);
+        if(empty($token)) {
+            $response->setError(429, 'rate_limited', 'Too many tokens requested in the last hour');
+        }
+
+        return $token;
     }
 
     /**
